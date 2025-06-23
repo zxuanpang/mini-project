@@ -1,0 +1,32 @@
+
+
+<div class="main-container">
+    <!-- Left Side - News Section -->
+    <div class="left-section">
+        <div class="card mt-4">
+            <h2>📰 Latest News on Gender Equality</h2>
+            <div *ngFor="let news of newsList | slice:0:3">
+            <h4>{{ news.title }}</h4>
+            <p>{{ news.description }}</p>
+            <a [href]="news.url" target="_blank">Read More</a>
+            <hr />
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Right Side - Chart Section -->
+    <div class="right-section">
+
+        <div class="card">
+            <h2>📈 Women in Parliament - International Comparison</h2>
+            <div class="chart-container" *ngIf="isChartDataLoaded">
+                <canvas #chartCanvas></canvas>
+            </div>
+            <div *ngIf="!isChartDataLoaded && chartData.length > 0" class="loading">
+                <p>Loading chart data...</p>
+            </div>
+        </div>
+
+    </div>
+</div>
