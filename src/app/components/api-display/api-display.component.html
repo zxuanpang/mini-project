@@ -1,32 +1,69 @@
+<div class="page-wrapper">
 
+  <!-- Carousel -->
+  <div class="section-wrapper">
+    <div class="carousel-container">
+      <img [src]="slides[currentSlide].src" class="carousel-image" />
+      <button class="carousel-btn left" (click)="prevSlide()">&#8592;</button>
+      <button class="carousel-btn right" (click)="nextSlide()">&#8594;</button>
+    </div>
+  </div>
 
-<div class="main-container">
-    <!-- Left Side - News Section -->
-    <div class="left-section">
-        <div class="card mt-4">
-            <h2>📰 Latest News on Gender Equality</h2>
-            <div *ngFor="let news of newsList | slice:0:5">
-            <h4>{{ news.title }}</h4>
-            <p>{{ news.description }}</p>
-            <a [href]="news.url" target="_blank">Read More</a>
-            <hr />
-            </div>
+  <!-- News -->
+<div id="news" class="section-wrapper">
+  <div class="card">
+    <h2>📰 Latest News on Gender Equality</h2>
+
+    <div *ngFor="let news of newsList | slice:0:displayCount" class="news-item">
+      <h4>{{ news.title }}</h4>
+      <span class="news-tag">{{ news.topicTag }}</span>
+
+      <div class="news-body">
+        <p>{{ news.description }}</p>
+        <div class="read-more-container">
+          <a [href]="news.url" target="_blank" class="read-more-link">Read More</a>
         </div>
+      </div>
+
+      <hr />
     </div>
 
-
-    <!-- Right Side - Chart Section -->
-    <div class="right-section">
-
-        <div class="card">
-            <h2>📈 Women in Parliament - International Comparison</h2>
-            <div class="chart-container" *ngIf="isChartDataLoaded">
-                <canvas #chartCanvas></canvas>
-            </div>
-            <div *ngIf="!isChartDataLoaded && chartData.length > 0" class="loading">
-                <p>Loading chart data...</p>
-            </div>
-        </div>
-
+    <div class="button-group right-align">
+      <button *ngIf="displayCount < newsList.length" (click)="loadMore()" class="load-more-btn">Load More</button>
+      <button *ngIf="displayCount > initialDisplayCount" (click)="showLess()" class="load-more-btn">Show Less</button>
     </div>
+  </div>
+</div>
+
+
+
+  <!-- Videos -->
+<div id="videos" class="section-wrapper">
+  <h2>🎥 Related Videos on Gender Equality</h2>
+  <div class="video-grid">
+    <div class="video-card" *ngFor="let video of youtubeVideos">
+      <h4>{{ video.snippet.title }}</h4>
+      <iframe
+        width="100%"
+        height="200"
+        [src]="'https://www.youtube.com/embed/' + video.id.videoId | safe"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+  <!-- Chart -->
+  <div id="chart" class="section-wrapper">
+    <div class="card">
+      <h2>📈 Women in Parliament - International Comparison</h2>
+      <div class="chart-container" *ngIf="isChartDataLoaded">
+        <canvas #chartCanvas></canvas>
+      </div>
+      <div *ngIf="!isChartDataLoaded && chartData.length > 0" class="loading">
+        <p>Loading chart data...</p>
+      </div>
+    </div>
+  </div>
 </div>

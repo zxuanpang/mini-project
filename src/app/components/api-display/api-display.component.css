@@ -1,30 +1,79 @@
-/* Main Layout */
-.main-container {
-  display: flex;
-  gap: 1.5rem;
-  min-height: 100vh;
-  align-items: flex-start; /* This ensures both sections align at the top */
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-.left-section {
-  flex: 1;
-  min-width: 0; /* Prevents flex item from overflowing */
+.section-wrapper {
+  margin-top: 4rem; 
+  margin-bottom: 3rem;
 }
 
-.right-section {
-  flex: 1;
-  min-width: 0;
+.section-wrapper h2 {
+  text-align: center;
 }
 
+
+/* Carousel */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-btn.left {
+  left: 15px;
+}
+
+.carousel-btn.right {
+  right: 15px;
+}
+
+/* Card Component */
 .card {
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-  height: fit-content;
-  margin: 0; /* Remove any default margins */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease;
 }
 
+.card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Chart */
 .chart-container {
   position: relative;
   height: 400px;
@@ -32,7 +81,9 @@
   margin-top: 1rem;
 }
 
-.loading, .error {
+/* Loading + Error */
+.loading,
+.error {
   text-align: center;
   padding: 2rem;
   color: #666;
@@ -42,14 +93,16 @@
   color: #e74c3c;
 }
 
-.loading p, .error p {
+.loading p,
+.error p {
   font-size: 1.1rem;
   margin: 0;
 }
 
+/* Text Styling */
 h2 {
   color: #2c3e50;
-  margin-bottom: 1rem;
+  margin-bottom: 4rem;
   font-weight: 600;
 }
 
@@ -80,20 +133,131 @@ hr {
   margin: 1rem 0;
 }
 
-.mt-4 {
-  margin-top: 1.5rem;
+.read-more-container {
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+.button-group.right-align {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* Tag Styling */
+.news-tag {
+  display: inline-block;
+  background-color: #e0f2f1;
+  color: #00796b;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+/* Buttons */
+.load-more-btn {
+  margin-top: 16px;
+  margin-bottom: 24px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+  background-color: #0056b3;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.video-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.video-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.video-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: #2c3e50;
+}
+
+.news-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-body p {
+  margin: 0 0 0.25rem 0;
+  max-width: 92%;
+}
+
+.news-item {
+  padding-bottom: 0.5rem; 
+}
+
+hr {
+  margin: 1.25rem 0;
 }
 
 
+.read-more-container {
+  text-align: right;
+}
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .chart-container {
-    height: 300px;
+.read-more-link {
+  font-weight: 500;
+  color: #3498db;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.read-more-link:hover {
+  text-decoration: underline;
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .main-grid {
+    flex-direction: column;
   }
-  
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  .carousel-container {
+    height: 400px;
+  }
+
   .card {
     padding: 1rem;
   }
 }
-

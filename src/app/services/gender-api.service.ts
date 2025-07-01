@@ -25,9 +25,28 @@ export class GenderApiService {
 
   getNews(): Observable<any> {
     const apiKey = 'cc361ab4ef7f4159adf85d92850b82ce';
-    const query = `"female politician" OR "women leaders" OR "female president" OR "Kamala Harris" OR "Sanna Marin" OR "Angela Merkel"`;
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&sortBy=relevancy&domains=cnn.com,bbc.com,nytimes.com&apiKey=${apiKey}`;
+    const query = `"gender equality" OR "female education" OR "women empowerment" OR "female politician" OR "equal pay" OR "women in leadership" OR "gender pay gap"`;
+    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&language=en&sortBy=relevancy&pageSize=20&apiKey=${apiKey}`;
 
     return this.http.get(url);
   }
+
+  getYouTubeVideos(): Observable<any> {
+    const apiKey = 'AIzaSyB7JI786ngpkYjGxsfVGD1-js2luqxoZ-4';
+    const query = 'gender equality';
+    const maxResults = 6;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=${maxResults}&q=${encodeURIComponent(query)}&key=${apiKey}`;
+
+    return this.http.get(url);
+  }
+
+  getGenderImages(): Observable<any> {
+  const accessKey = 'B4_NAEcBzDemKypYOLxOc7sbtNGX4LA3-YMX9uWTWOo';
+  const query = 'gender equality OR feminism OR women empowerment OR men equality';
+  const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${accessKey}&per_page=5`;
+
+  return this.http.get(url);
+}
+
+
 }
