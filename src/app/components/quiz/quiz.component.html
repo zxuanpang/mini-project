@@ -1,28 +1,52 @@
-<div *ngIf="!quizFinished">
-  <h3>{{ currentQuestion.question }}</h3>
-  <div *ngFor="let option of currentQuestion.options; let i = index">
-    <label [ngClass]="{'correct': showAnswer && i === currentQuestion.correctAnswerIndex, 'incorrect': showAnswer && selectedAnswer === i && !answerWasCorrect}">
-      <input type="radio" name="answer" [value]="i" [(ngModel)]="selectedAnswer" [disabled]="showAnswer"> {{ option }}
-    </label>
-  </div>
-  
-  <!-- Submit button only shows when answer is selected and not yet submitted -->
-  <button *ngIf="!showAnswer" class="btn btn-submit" [disabled]="selectedAnswer === null" (click)="submitAnswer()">
-    Submit Answer
-  </button>
-  
-  <div *ngIf="showAnswer" class="mt-2">
-    <span *ngIf="answerWasCorrect" class="text-success">Correct! 🎉</span>
-    <span *ngIf="!answerWasCorrect" class="text-danger">Incorrect. The correct answer is: <b>{{ currentQuestion.options[currentQuestion.correctAnswerIndex] }}</b></span>
-    <br />
-    <button class="btn btn-next" (click)="nextQuestion()">
-      {{ currentIndex === questions.length - 1 ? 'Finish Quiz' : 'Next Question' }}
-    </button>
-  </div>
-</div>
+<div class="section-wrapper">
+  <div class="card">
+    <div *ngIf="!quizFinished">
+      <h3>{{ currentQuestion.question }}</h3>
 
-<div *ngIf="quizFinished" class="quiz-completion">
-  <h2>Your Awareness Score: {{ score }} / {{ questions.length }}</h2>
-  <p *ngIf="score >= 3">Great job! You are well-informed 🎉</p>
-  <p *ngIf="score < 3">Keep learning! Awareness is the first step 💪</p>
+      <div *ngFor="let option of currentQuestion.options; let i = index">
+        <label
+          [ngClass]="{
+            correct: showAnswer && i === currentQuestion.correctAnswerIndex,
+            incorrect: showAnswer && selectedAnswer === i && !answerWasCorrect
+          }"
+        >
+          <input
+            type="radio"
+            name="answer"
+            [value]="i"
+            [(ngModel)]="selectedAnswer"
+            [disabled]="showAnswer"
+          />
+          {{ option }}
+        </label>
+      </div>
+
+      <button
+        *ngIf="!showAnswer"
+        class="btn btn-submit"
+        [disabled]="selectedAnswer === null"
+        (click)="submitAnswer()"
+      >
+        Submit Answer
+      </button>
+
+      <div *ngIf="showAnswer" class="mt-2">
+        <span *ngIf="answerWasCorrect" class="text-success">Correct! 🎉</span>
+        <span *ngIf="!answerWasCorrect" class="text-danger">
+          Incorrect. The correct answer is:
+          <b>{{ currentQuestion.options[currentQuestion.correctAnswerIndex] }}</b>
+        </span>
+        <br />
+        <button class="btn btn-next" (click)="nextQuestion()">
+          {{ currentIndex === questions.length - 1 ? 'Finish Quiz' : 'Next Question' }}
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="quizFinished" class="quiz-completion">
+      <h2>Your Awareness Score: {{ score }} / {{ questions.length }}</h2>
+      <p *ngIf="score >= 3">Great job! You are well-informed 🎉</p>
+      <p *ngIf="score < 3">Keep learning! Awareness is the first step 💪</p>
+    </div>
+  </div>
 </div>
