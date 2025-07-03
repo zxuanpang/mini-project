@@ -19,8 +19,8 @@ export class QuizComponent {
   questions: QuizQuestion[] = [
     {
       question: 'What is the global average gender pay gap?',
-      options: ['16%', '8%', '25%', '5%'],
-      correctAnswerIndex: 0
+      options: ['16%', '8%', '23%', '5%'],
+      correctAnswerIndex: 2
     },
     {
       question: 'What percentage of parliamentarians are women globally?',
@@ -34,8 +34,8 @@ export class QuizComponent {
     },
     {
       question: 'What percentage of Fortune 500 CEOs are women?',
-      options: ['8%', '15%', '22%', '30%'],
-      correctAnswerIndex: 0
+      options: ['8%', '11%', '22%', '30%'],
+      correctAnswerIndex: 1
     },
     {
       question: 'Which country was the first to grant women the right to vote?',
