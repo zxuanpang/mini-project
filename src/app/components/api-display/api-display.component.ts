@@ -239,6 +239,10 @@ prevSlide() {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+
+        // 👇 Add this line to make the bar chart horizontal
+        // indexAxis: 'y',
+        
         plugins: {
           title: {
             display: true,
@@ -253,7 +257,7 @@ prevSlide() {
           }
         },
         scales: {
-          y: {
+          y: {  // x
             beginAtZero: true,
             max: 60,
             ticks: {
@@ -266,7 +270,7 @@ prevSlide() {
               text: 'Percentage (%)'
             }
           },
-          x: {
+          x: {  // y
             title: {
               display: true,
               text: 'Countries'
